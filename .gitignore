@@ -4,6 +4,7 @@ outputs/*
 !outputs/placeholder
 
 latent_diffusion.egg-info
+src/
 
 *.ckpt
 
