@@ -1,0 +1,12 @@
+テンプレ.md
+
+outputs/*
+!outputs/placeholder
+
+latent_diffusion.egg-info
+
+*.ckpt
+
+**/__pycache__
+
+init_images
