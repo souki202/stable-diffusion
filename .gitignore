@@ -5,6 +5,10 @@ outputs/*
 
 latent_diffusion.egg-info
 src/
+localhost.pem
+
+# ライセンスが書いてない
+webui.py
 
 *.ckpt
 
