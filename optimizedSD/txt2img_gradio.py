@@ -1,3 +1,5 @@
+import asyncio
+import threading
 import gradio as gr
 import numpy as np
 import torch
@@ -204,4 +206,22 @@ demo = gr.Interface(
             "checkbox", "checkbox",],
     outputs=["image", "text"],
 )
-demo.launch()
+
+class ServerLauncher(threading.Thread):
+    def __init__(self, demo):
+        threading.Thread.__init__(self)
+        self.name = 'Gradio Server Thread'
+        self.demo = demo
+
+    def run(self):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        self.demo.launch(show_error=True, server_name='0.0.0.0')
+
+    def stop(self):
+        self.demo.close() # this tends to hang
+
+if __name__ == '__main__':
+    server_thread = ServerLauncher(demo)
+    server_thread.start()
+
